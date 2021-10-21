@@ -1,13 +1,25 @@
 <?php
-    if (isset($_POST['login'])) {
-        $connection = new mysql_connect(host:'localhost',username:'root',password:'', dbname:'dbprova');
-        
-        
-        $email = $connection->real_escape_string($_POST['email']);
-        $password = $connection->real_escape_string($_POST['password']);
 
-        $data = $connection->query(query: "SELECT id FROM users WHERE email='$email' AND password='$password'");
-        exit($email . " = " . $password);
+    session_start();
+
+    if (isset($_SESSION['loggedIN'])) {
+        header('Location:hidden.php');
+        exit();
+    }
+
+    if (isset($_POST['login'])) {
+        $connection = new mysqli('localhost', 'root','','dbprova');
+        
+        $email = $connection->real_escape_string($_POST['emailPHP']);
+        $password = $connection->real_escape_string($_POST['passwordPHP']);
+
+        $data = $connection->query("SELECT id FROM users WHERE email='$email' AND password='$password'");
+        if ($data->num_rows > 0) {
+            $_SESSION['loggedIN'] = '1';
+            $_SESSION['email'] = $email;
+            exit ('success');
+        } else
+            exit('failed');
     }
 ?>
 
@@ -21,6 +33,11 @@
             <input type="password" id="password" placeholder="Password..."><br>
             <input type="button" id="login" value="Log In">
         </form>
+
+        <p id="response">
+
+        </p>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function (){
@@ -40,7 +57,10 @@
                                 passwordPHP: password
                             },
                             success: function (response){
-                                console.log(response);
+                                $("#response").html(response);
+
+                                if (response.indexOf('success') >= 0)
+                                    window.location = 'hidden.php';
                             },
                             dataType: 'text'
                         })
