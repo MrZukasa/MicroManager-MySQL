@@ -1,11 +1,11 @@
 <?php
 
-    session_start();
+    /*session_start();
 
     if (isset($_SESSION['loggedIN'])) {
         header('Location:hidden.php');
         exit();
-    }
+    }*/
 
     if (isset($_POST['login'])) {
         $connection = new mysqli('localhost', 'root','','dbprova');
@@ -59,8 +59,8 @@
                             success: function (response){
                                 $("#response").html(response);
 
-                                if (response.indexOf('success') >= 0)
-                                    window.location = 'hidden.php';
+                                //if (response.indexOf('success') >= 0)
+                                    //window.location = 'hidden.php';
                             },
                             dataType: 'text'
                         })
