@@ -1,23 +1,35 @@
-$("#insert").click(()=>{            
-    var file = new Object();
-    file.nome = $("#Nome").val(); 
-    file.password = $("#Password").val();
-    file.email = $("#Email").val();
-    var dati = [];
-    dati.push(file);
-
-    if (email == "" || password == "" || nome == "") {
-        alert("Please check the input field");                   
+$("#insert").click(()=>{
+    
+    var nome = $("#Nome").val(); 
+    var password = $("#Password").val();
+    var email = $("#Email").val();
+    
+    if (email == "" || password == "" || nome == "") {        
+        $("#response").html("Please check the input field");
     } else {
         $.ajax({
             url: "insert.php",
             type: "POST",
-            dataType: "json",
-            data: {data:JSON.stringify(dati)},
-            success: function(response){
-                $("#response").html(response);
+            async: true,
+            //dataType: "json",
+            data: {
+                emailPHP: email,
+                passwordPHP: password,
+                nomePHP: nome
+            },            
+            success: function(){
+                $("#response").css("color", "green");
+                $("#response").html("Success!");                
+                return;
+            },
+            failure: function(){
+                $("#response").css("color", "red");
+                $("#response").html("Failure!");                
+                return;
+            },            
+            error: function(ex){
+                console.log(JSON.stringify(ex));
             }
-
-        })
-    }
+        });        
+    };
 })

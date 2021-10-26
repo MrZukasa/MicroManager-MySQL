@@ -1,0 +1,16 @@
+form{
+    display: table;
+}
+label{
+    display: table-cell;            
+}        
+input{
+    display:table-cell;            
+}
+p{
+    display: table-row;            
+}
+button{
+    display:table-cell;
+    margin-left: 3ex;
+}
