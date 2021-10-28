@@ -16,7 +16,7 @@
   </head>
   <body>
         
-    <form name="field">
+    <form name="field" action="insert.php" method="post">
         <p>            
             <label>Nome: </label> <input id="Nome" placeholder="Name">            
         </p>
@@ -27,8 +27,11 @@
             <label>Password: </label> <input id="Password" placeholder="Password">
         </p>
         <p>
-            <button type="button" id="insert">Insert</button>
-        </p>        
+            <button type="button" id="insert">Insert</button>            
+        </p>
+        <p>
+            <button type="button" id="view">View</button>
+        </p>
     </form>
     <p id="response"></p>
 
