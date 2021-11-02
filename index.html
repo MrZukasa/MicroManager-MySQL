@@ -17,23 +17,17 @@
   <body>
         
     <form name="field" action="insert.php" method="post">
-        <p>            
-            <label>Nome: </label> <input id="Nome" placeholder="Name">            
-        </p>
+        <label>Nome: </label> <input id="Nome" placeholder="Name">            
+        <label>Email: </label> <input id="Email" placeholder="example@provider.com">
+        <label>Password: </label> <input id="Password" placeholder="Password">
+        <br>
         <p>
-            <label>Email: </label> <input id="Email" placeholder="example@provider.com">
-        </p>        
-        <p>
-            <label>Password: </label> <input id="Password" placeholder="Password">
-        </p>
-        <p>
-            <button type="button" id="insert">Insert</button>            
-        </p>
-        <p>
+            <button type="button" id="insert">Insert</button>
             <button type="button" id="view">View</button>
+            <button type="button" id="delete">Delete</button>
         </p>
     </form>
-    <p id="response"></p>
+    <table id="response"></table>
 
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>              <!-- link to JQUERY libary -->

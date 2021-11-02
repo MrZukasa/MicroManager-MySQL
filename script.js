@@ -34,13 +34,20 @@ $("#insert").click(()=>{
     };
 });
 
-$("#view").click(()=>{    
+$("#view").click(()=>{
+    var tabella ="";
+    var riga="";
     $.getJSON("all.json", function(data){
-        console.log(data[0].id);
-        console.log(data[1].firstName);
-        console.log(data[2].email);
-        console.log(data[3].password);
-
+        $.each(data, (i,record)=>{
+            console.log(record);
+            riga = "<td>"+record.id+"</td><td>"+record.firstName+"</td><td>"+record.email+"</td><td>"+record.password+"</td>";
+            tabella += "<tr>"+riga+"</tr>";
+            $("#response").html(tabella);
+        });
     });
-})
+});
 
+$("#delete").click(()=>{
+    $("all.json").parent().remove();
+    $("temp.json").parent().remove();
+});
