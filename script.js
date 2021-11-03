@@ -47,6 +47,21 @@ $("#view").click(()=>{
     });
 });
 
-$("#delete").click(()=>{    
-    
+$("#delete").click(()=>{
+    $.ajax({
+        url:"remove.php",
+        type:"POST",
+        async: true,
+        data: {path:'all.json',path2:"temp.json"},
+        success: function(){
+            $("#response").css("color", "green");
+            $("#response").html("Success!");
+            return;
+        },
+        failure: function(){
+            $("#response").css("color", "red");
+            $("#response").html("Failure!");
+            return;
+        }
+    });
 });
