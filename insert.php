@@ -43,7 +43,7 @@
           }
 
       $fh = fopen('all.json','w') or die('error');    //creo un JSON temporaneo con tutto il dump del database      
-      fwrite($fh, json_encode($posts));
+      fwrite($fh, json_encode($posts, JSON_UNESCAPED_UNICODE));
       fclose($fh);
 
       mysqli_free_result($result);
