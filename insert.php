@@ -7,11 +7,11 @@
 
       $myFile = "temp.json";
       $response = array();
-      $posts = array();
+      $posts = array();      
       $posts[]=array('nome' => $nome, 'password' => $password, 'email' => $email);
       $response['posts'] = $posts;
       $fh = fopen($myFile, 'w') or die("can't open file");
-      fwrite($fh, json_encode($posts));
+      fwrite($fh, json_encode($posts));      
       fclose($fh);
       //funzione per creare JSON file
 
@@ -21,8 +21,8 @@
       foreach($decoded as $item){
           $nomeJSON=$item["nome"];
           $emailJSON=$item["email"];
-          $passwordJSON=$item["password"];            
-      }          
+          $passwordJSON=$item["password"];
+      }      
       //lettura dati dal JSON File
     
       $connection = new mysqli('localhost', 'root','','dbprova');
@@ -39,10 +39,10 @@
       $data = "SELECT id, firstName, email, password FROM users";
       $result = $connection->query($data);
           while ($row = mysqli_fetch_assoc($result)) {
-              $posts[]=$row;
-          }      
+            $posts[]=$row;
+          }
 
-      $fh = fopen('all.json','w') or die('error');    //creo un JSON temporaneo con tutto il dump del database
+      $fh = fopen('all.json','w') or die('error');    //creo un JSON temporaneo con tutto il dump del database      
       fwrite($fh, json_encode($posts));
       fclose($fh);
 

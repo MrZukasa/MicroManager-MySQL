@@ -42,12 +42,11 @@ $("#view").click(()=>{
             console.log(record);
             riga = "<td>"+record.id+"</td><td>"+record.firstName+"</td><td>"+record.email+"</td><td>"+record.password+"</td>";
             tabella += "<tr>"+riga+"</tr>";
-            $("#response").html(tabella);
+            $("#tabella").html(tabella);
         });
     });
 });
 
-$("#delete").click(()=>{
-    $("all.json").parent().remove();
-    $("temp.json").parent().remove();
+$("#delete").click(()=>{    
+    
 });
