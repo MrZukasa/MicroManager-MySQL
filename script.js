@@ -35,7 +35,6 @@ $("#insert").click(()=>{
 });
 
 $("#view").click(()=>{
-
     $.ajax({
         url: "view.php",
         type: "POST",
@@ -49,32 +48,27 @@ $("#view").click(()=>{
                      console.log(record);
                      riga = "<td>"+record.id+"</td><td>"+record.firstName+"</td><td>"+record.email+"</td><td>"+record.password+"</td>";
                      tabella += "<tr>"+riga+"</tr>";
-                     $("#tabella").html(tabella);
+                     $("#tabella").hide().html(tabella).fadeIn(200);
                  });
              });
         },
         failure: function(){
-
+            $("#response").css("color", "red");
+            $("#response").hide().html("Error!").fadeIn(200).delay(2000).fadeOut(200);
         }
-    })
-
-    // var tabella ="";
-    // var riga="";
-    // $.getJSON("all.json", function(data){
-    //     $.each(data, (i,record)=>{
-    //         console.log(record);
-    //         riga = "<td>"+record.id+"</td><td>"+record.firstName+"</td><td>"+record.email+"</td><td>"+record.password+"</td>";
-    //         tabella += "<tr>"+riga+"</tr>";
-    //         $("#tabella").html(tabella);
-    //     });
-    // });
+    });    
 });
 
 $("#delete").click(()=>{
+    $("#tabella").fadeOut(200);    
     $.ajax({
         url:"remove.php",
         type:"POST",
         async: true,
-        data: {path:'all.json',path2:"temp.json"}        
-    });
+        data: {path:'all.json',path2:"temp.json"},
+        success: function(){
+            $("#response").css("color", "green");
+            $("#response").hide().html("Success!").fadeIn(200).delay(2000).fadeOut(200);            
+        }
+    });    
 });

@@ -18,10 +18,18 @@ button{
     width: 8ex;
     border-radius: 3px;    
 }
+
+#response{
+    display: flex;
+    margin-left: 30px;
+}
+
 table{
-    width: 100%;;    
+    width: 50%;
+    margin-left: 25px;    
 }
 td{
     background-color: #ffffff;
+    border-color: darkolivegreen;
     box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
   }
