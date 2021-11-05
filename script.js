@@ -35,16 +35,39 @@ $("#insert").click(()=>{
 });
 
 $("#view").click(()=>{
-    var tabella ="";
-    var riga="";
-    $.getJSON("all.json", function(data){
-        $.each(data, (i,record)=>{
-            console.log(record);
-            riga = "<td>"+record.id+"</td><td>"+record.firstName+"</td><td>"+record.email+"</td><td>"+record.password+"</td>";
-            tabella += "<tr>"+riga+"</tr>";
-            $("#tabella").html(tabella);
-        });
-    });
+
+    $.ajax({
+        url: "view.php",
+        type: "POST",
+        async: false,
+        data: {action:'action'},
+        success: function(){
+             var tabella ="";
+             var riga="";
+             $.getJSON("all.json", function(data){
+                 $.each(data, (i,record)=>{
+                     console.log(record);
+                     riga = "<td>"+record.id+"</td><td>"+record.firstName+"</td><td>"+record.email+"</td><td>"+record.password+"</td>";
+                     tabella += "<tr>"+riga+"</tr>";
+                     $("#tabella").html(tabella);
+                 });
+             });
+        },
+        failure: function(){
+
+        }
+    })
+
+    // var tabella ="";
+    // var riga="";
+    // $.getJSON("all.json", function(data){
+    //     $.each(data, (i,record)=>{
+    //         console.log(record);
+    //         riga = "<td>"+record.id+"</td><td>"+record.firstName+"</td><td>"+record.email+"</td><td>"+record.password+"</td>";
+    //         tabella += "<tr>"+riga+"</tr>";
+    //         $("#tabella").html(tabella);
+    //     });
+    // });
 });
 
 $("#delete").click(()=>{
@@ -52,16 +75,6 @@ $("#delete").click(()=>{
         url:"remove.php",
         type:"POST",
         async: true,
-        data: {path:'all.json',path2:"temp.json"},
-        success: function(){
-            $("#response").css("color", "green");
-            $("#response").html("Success!");
-            return;
-        },
-        failure: function(){
-            $("#response").css("color", "red");
-            $("#response").html("Failure!");
-            return;
-        }
+        data: {path:'all.json',path2:"temp.json"}        
     });
 });

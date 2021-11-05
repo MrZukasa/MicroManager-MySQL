@@ -33,19 +33,5 @@
       $data = "INSERT INTO users (firstName, email, password) VALUES ('$nomeJSON','$emailJSON','$passwordJSON');";
       if ($connection->query($data)===false) {
           trigger_error('Query failed: ' . $connection->error, E_USER_ERROR);          
-      } //query per l'inserimento dei dati dal JSON al database
-
-      $posts=[];  //inizzializzo la variabile sul quale scrivere
-      $data = "SELECT id, firstName, email, password FROM users";
-      $result = $connection->query($data);
-          while ($row = mysqli_fetch_assoc($result)) {
-            $posts[]=$row;
-          }
-
-      $fh = fopen('all.json','w') or die('error');    //creo un JSON temporaneo con tutto il dump del database      
-      fwrite($fh, json_encode($posts, JSON_UNESCAPED_UNICODE));
-      fclose($fh);
-
-      mysqli_free_result($result);
-      $connection -> close();
+      } //query per l'inserimento dei dati dal JSON al database      
 ?>
