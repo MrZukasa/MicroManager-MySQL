@@ -17,16 +17,20 @@
   <body>
         
     <form name="field" action="insert.php" method="post">
-        <label>Nome: </label> <input id="Nome" placeholder="Name">            
-        <label>Email: </label> <input id="Email" placeholder="example@provider.com">
-        <label>Password: </label> <input id="Password" placeholder="Password">
+        
+          <label>Nome: </label> <input id="Nome" placeholder="Name">
+          <label>Email: </label> <input id="Email" placeholder="example@provider.com">
+          <label>Password: </label> <input id="Password" placeholder="Password">
         <br>
         <p>
             <button type="button" id="insert">Insert</button>
             <button type="button" id="view">View</button>
             <button type="button" id="delete">Delete</button>
+            <button type="button" id="update">Update</button>
         </p>
+
     </form>
+    
     <p id="response"></p>
     <table id="tabella"></table>
 
