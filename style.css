@@ -42,4 +42,5 @@ table tr:nth-child(even) td{
 }
 table tr:hover td{
     background-color:rgba(130, 155, 240, 0.897);
+    cursor: pointer;
 }

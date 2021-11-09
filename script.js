@@ -21,6 +21,9 @@ $("#insert").click(()=>{
             success: function(){
                 $("#response").css("color", "green");
                 $("#response").hide().html("Success!").fadeIn(200).delay(2000).fadeOut(200);
+                $("#Nome").val("");
+                $("#Email").val("");
+                $("#Password").val("");
                 return;
             },
             failure: function(){
@@ -36,6 +39,9 @@ $("#insert").click(()=>{
 });
 
 $("#view").click(()=>{
+    $("#Nome").val("");
+    $("#Email").val("");
+    $("#Password").val("");
     $.ajax({
         url: "view.php",
         type: "POST",
@@ -75,8 +81,12 @@ $("#delete").click(()=>{
 });
 
 $("#tabella").on("click","tr", function(){
-    var tds = $(this).find("td");    
-    tds.each(function(i,o){
-        $("#Nome").val($(o).attr("firstName").text());
-    });    
+    var culumn = $(this).find("td");
+    var arr=[];
+    culumn.each(function(i,o){
+        arr[i]=$(o).text();
+    });
+    $("#Nome").val(arr[1]);
+    $("#Email").val(arr[2]);
+    $("#Password").val(arr[3]); 
 });
