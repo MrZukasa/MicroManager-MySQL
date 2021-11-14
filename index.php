@@ -8,14 +8,15 @@
     <meta name="generator" content="">   <!-- describe the generator -->
     
     <!--<link href="fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet">         <!-- link to css Third Party-->    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" >    <!-- link to Third Party css {bootstrap}-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" >    <!-- link to Third Party css {bootstrap}-->    
     <link rel="stylesheet" type="text/css" href="style.css">                       <!-- link to mine CSS -->
+    <link href="https://img.icons8.com/nolan/64/github.png" rel="icon" type="image/png" />
     
     <title> Insert into JSON then into MySQL DB</title>
   </head>
-  <body>
+  <body class="bg-dark bg-opacity-10">
 
-  <div class="card text-center">
+  <div class="card text-center bg-dark bg-opacity-10 text-dark text-opacity-75">
     <h5 class="card-header">Insert / Read / Delete / Update Data from DB</h5>      
   </div>
 
@@ -48,15 +49,16 @@
       </div>
       <div class="row justify-content-md-center mt-3">
         <div class="table-responsive">
-          <table class="table table-hover table-striped" id="tabella" style="display: none">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">ID</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Password</th>
-            </thead>
+          <table class="table table-hover table-striped table-sm" id="tabella" style="display: none">                    
+            <caption>Click on a row to Edit/Delete</caption>
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">ID</th>
+                  <th scope="col">First Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Password</th>
+              </thead>
             <tbody>
 
             </tbody>

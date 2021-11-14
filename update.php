@@ -11,7 +11,7 @@
         trigger_error('Connection failed: ' . $connection->connect_error, E_USER_ERROR);
     }  // apertura connessione al database
 
-    $data = "UPDATE users SET firstName = "+$nome+", email = "+$email+", password = "+$password+" WHERE id = "+$id;
+    $data = "UPDATE users SET firstName = '$nome', email = '$email', password = '$password' WHERE id = '$id'";
     if ($connection->query($data)===false) {
         echo("Error: " . $connection->error);
     } //query per l'inserimento dei dati dal JSON al database  

@@ -10,7 +10,7 @@ $("#insert").click(()=>{
     } else {
         $.ajax({
             url: "insert.php",
-            type: "POST",
+            method: "POST",
             async: true,
             //dataType: "json",
             data: {
@@ -44,7 +44,7 @@ $("#view").click(()=>{
     $("#Password").val("");
     $.ajax({
         url: "view.php",
-        type: "POST",
+        method: "POST",
         async: true,
         data: {action:'action'},
         success: function(){
@@ -53,7 +53,7 @@ $("#view").click(()=>{
              var riga="";
              $.getJSON("all.json", function(data){
                  $.each(data, (i,record)=>{
-                     console.log(record);
+                    //  console.log(record);
                      riga = '<td class="firstName">'+record.id+'</td><td class="firstName">'+record.firstName+'</td><td class="email">'+record.email+'</td><td class="password">'+record.password+'</td>';
                      tabella += "<tr><th scope='row'>"+(i+1)+"</th>"+riga+"</tr>";                    
                  });
@@ -78,7 +78,7 @@ $("#delete").click(()=>{
     $("#tabella").fadeOut(200);
     $.ajax({
         url:"remove.php",
-        type:"POST",
+        method:"POST",
         async: true,
         data: {
             path:'all.json',
@@ -88,9 +88,9 @@ $("#delete").click(()=>{
             passwordPHP: password,
             nomePHP: nome
         },
-        success: function(){
+        success: function(data){
             $("#response").css("color", "green");
-            $("#response").hide().html("Success!").fadeIn(200).delay(2000).fadeOut(200);            
+            $("#response").hide().html(data).fadeIn(200).delay(2000).fadeOut(200);            
         },
         failure: function(data){
             $("#response").css("color", "red");
@@ -113,25 +113,35 @@ $("#tabella").on("click","tr", function(){
 });
 
 $("#update").click(()=>{
-    $.ajax({
-        url:"remove.php",
-        type:"POST",
-        async: true,
-        data: {
-            path:'all.json',
-            path2:"temp.json",
-            idPHP: id,
-            emailPHP: email,
-            passwordPHP: password,
-            nomePHP: nome
-        },
-        success: function(){
-            $("#response").css("color", "green");
-            $("#response").hide().html("Success!").fadeIn(200).delay(2000).fadeOut(200);            
-        },
-        failure: function(data){
-            $("#response").css("color", "red");
-            $("#response").hide().html(data).fadeIn(200).delay(2000).fadeOut(200);            
-        }
-    });
+
+    var nome = $("#Nome").val(); 
+    var password = $("#Password").val();
+    var email = $("#Email").val();
+    var id = $("#Id").val();
+
+    if ($(".form-control").val()!=""){
+        $.ajax({
+            url:"update.php",
+            method:"POST",
+            async: true,
+            data: {                
+                idPHP: id,
+                emailPHP: email,
+                passwordPHP: password,
+                nomePHP: nome
+            },
+            success: function(){
+                $("#response").css("color", "green");
+                $("#response").hide().html("Success!").fadeIn(200).delay(2000).fadeOut(200);            
+            },
+            failure: function(data){
+                $("#response").css("color", "red");
+                $("#response").hide().html(data).fadeIn(200).delay(2000).fadeOut(200);
+            }
+        });
+    } else {
+        $("#response").css("color", "red");
+        $("#response").hide().html("Nothing to update!").fadeIn(200).delay(2000).fadeOut(200);
+    }
+    $(".form-control").val("");
 });
