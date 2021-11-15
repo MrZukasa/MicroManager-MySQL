@@ -10,6 +10,7 @@
     <!--<link href="fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet">         <!-- link to css Third Party-->    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" >    <!-- link to Third Party css {bootstrap}-->    
     <link rel="stylesheet" type="text/css" href="style.css">                       <!-- link to mine CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
     <link href="https://img.icons8.com/nolan/64/github.png" rel="icon" type="image/png" />
     
     <title> Insert into JSON then into MySQL DB</title>
@@ -33,7 +34,12 @@
           <input id="Email" placeholder="Email" class="form-control" type="email">
         </div>
         <div class="col">
-          <input id="Password" placeholder="Password" class="form-control" type="password">
+          <div class="input-group mb-3">
+            <input id="Password" placeholder="Password" class="form-control" type="password">
+              <button class="btn btn-outline-secondary" type="button" id="seepassword">
+                <i class="bi bi-eye" id="occhio"></i>
+              </button>
+          </div>
         </div>
       </div>
       <div class="row justify-content-md-center mt-3">
@@ -45,7 +51,7 @@
         </div>
       </div>
       <div class="row justify-content-md-center mt-3">
-        <p id="response" class="text-center"></p>
+        <div id="response" class="text-center alert" role="alert"></div>
       </div>
       <div class="row justify-content-md-center mt-3">
         <div class="table-responsive">
@@ -60,7 +66,7 @@
                   <th scope="col">Password</th>
               </thead>
             <tbody>
-
+              <!-- data from the DB here -->
             </tbody>
           </table>
         </div>

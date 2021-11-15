@@ -1,4 +1,4 @@
-$("#insert").click(()=>{
+$("#insert").click(()=>{                        /* function that allow the user to insert a singular record into the DB */
     
     var nome = $("#Nome").val(); 
     var password = $("#Password").val();
@@ -11,8 +11,7 @@ $("#insert").click(()=>{
         $.ajax({
             url: "insert.php",
             method: "POST",
-            async: true,
-            //dataType: "json",
+            async: true,            
             data: {
                 emailPHP: email,
                 passwordPHP: password,
@@ -21,15 +20,11 @@ $("#insert").click(()=>{
             success: function(){
                 $("#response").css("color", "green");
                 $("#response").hide().html("Success!").fadeIn(200).delay(2000).fadeOut(200);
-                $("#Nome").val("");
-                $("#Email").val("");
-                $("#Password").val("");
-                return;
+                $(".form-control").val("");                               
             },
             failure: function(){
                 $("#response").css("color", "red");
-                $("#response").hide().html("Failure!").fadeIn(200).delay(2000).fadeOut(200);
-                return;
+                $("#response").hide().html("Failure!").fadeIn(200).delay(2000).fadeOut(200);                
             },
             error: function(ex){
                 console.log(JSON.stringify(ex));
@@ -38,10 +33,12 @@ $("#insert").click(()=>{
     };
 });
 
-$("#view").click(()=>{
+$("#view").click(()=>{                              /* function that handles all the record from the DB and put them into a table */
+
     $("#Nome").val("");
     $("#Email").val("");
     $("#Password").val("");
+
     $.ajax({
         url: "view.php",
         method: "POST",
@@ -59,7 +56,7 @@ $("#view").click(()=>{
                  });
                  $("#tabella tbody").hide().html(tabella).fadeIn(200);
              });
-             $("#response").css("color","green");
+             $("#response").append("color","green");
              $("#response").hide().html("Success!").fadeIn(200).delay(2000).fadeOut(200);
         },
         failure: function(data){
@@ -69,7 +66,7 @@ $("#view").click(()=>{
     });    
 });
 
-$("#delete").click(()=>{
+$("#delete").click(()=>{                                /* function that allow the user to delete the selected record from the DB*/
     var nome = $("#Nome").val(); 
     var password = $("#Password").val();
     var email = $("#Email").val();
@@ -83,10 +80,7 @@ $("#delete").click(()=>{
         data: {
             path:'all.json',
             path2:"temp.json",
-            idPHP: id,
-            emailPHP: email,
-            passwordPHP: password,
-            nomePHP: nome
+            idPHP: id
         },
         success: function(data){
             $("#response").css("color", "green");
@@ -100,7 +94,7 @@ $("#delete").click(()=>{
     $(".form-control").val("");
 });
 
-$("#tabella").on("click","tr", function(){
+$("#tabella").on("click","tr", function(){                  /* function that allow the user to select one singular record via clicking it on the table */
     var culumn = $(this).find("td");
     var arr=[];
     culumn.each(function(i,o){
@@ -112,7 +106,7 @@ $("#tabella").on("click","tr", function(){
     $("#Password").val(arr[3]); 
 });
 
-$("#update").click(()=>{
+$("#update").click(()=>{                                    /* function that allow the user to modify one record already present into the DB */
 
     var nome = $("#Nome").val(); 
     var password = $("#Password").val();
@@ -124,7 +118,7 @@ $("#update").click(()=>{
             url:"update.php",
             method:"POST",
             async: true,
-            data: {                
+            data: {
                 idPHP: id,
                 emailPHP: email,
                 passwordPHP: password,
@@ -144,4 +138,16 @@ $("#update").click(()=>{
         $("#response").hide().html("Nothing to update!").fadeIn(200).delay(2000).fadeOut(200);
     }
     $(".form-control").val("");
+});
+
+$("#seepassword").click(()=>{
+    if($("#Password").attr("type")=="password") {
+        console.log("pw");
+        $("#Password").attr("type","text");
+        $("#occhio").attr("class","bi bi-eye-slash");        
+    } else {
+        console.log("not pw");
+        $("#Password").attr("type","password");
+        $("#occhio").attr("class","bi bi-eye");        
+    }
 });
