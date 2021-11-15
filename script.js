@@ -5,7 +5,7 @@ $("#insert").click(()=>{                        /* function that allow the user 
     var email = $("#Email").val();
     
     if (email == "" || password == "" || nome == "") {
-        $("#response").css("color", "red");
+        $("#response").attr("class", "text-center alert alert-danger col-md-8");
         $("#response").hide().html("Please check the input field!").fadeIn(200).delay(2000).fadeOut(200);
     } else {
         $.ajax({
@@ -18,12 +18,12 @@ $("#insert").click(()=>{                        /* function that allow the user 
                 nomePHP: nome
             },
             success: function(){
-                $("#response").css("color", "green");
+                $("#response").attr("class","text-center alert alert-success col-md-8");
                 $("#response").hide().html("Success!").fadeIn(200).delay(2000).fadeOut(200);
                 $(".form-control").val("");                               
             },
             failure: function(){
-                $("#response").css("color", "red");
+                $("#response").attr("class","text-center alert alert-danger col-md-8");
                 $("#response").hide().html("Failure!").fadeIn(200).delay(2000).fadeOut(200);                
             },
             error: function(ex){
@@ -49,18 +49,17 @@ $("#view").click(()=>{                              /* function that handles all
              var tabella ="";
              var riga="";
              $.getJSON("all.json", function(data){
-                 $.each(data, (i,record)=>{
-                    //  console.log(record);
+                 $.each(data, (i,record)=>{                    
                      riga = '<td class="firstName">'+record.id+'</td><td class="firstName">'+record.firstName+'</td><td class="email">'+record.email+'</td><td class="password">'+record.password+'</td>';
                      tabella += "<tr><th scope='row'>"+(i+1)+"</th>"+riga+"</tr>";                    
                  });
                  $("#tabella tbody").hide().html(tabella).fadeIn(200);
              });
-             $("#response").append("color","green");
+             $("#response").attr("class","text-center alert alert-success col-md-8");
              $("#response").hide().html("Success!").fadeIn(200).delay(2000).fadeOut(200);
         },
         failure: function(data){
-            $("#response").css("color", "red");
+            $("#response").attr("class","text-center alert alert-danger col-md-8");
             $("#response").hide().html(data).fadeIn(200).delay(2000).fadeOut(200);
         }
     });    
@@ -83,11 +82,11 @@ $("#delete").click(()=>{                                /* function that allow t
             idPHP: id
         },
         success: function(data){
-            $("#response").css("color", "green");
+            $("#response").attr("class","text-center alert alert-success col-md-8");
             $("#response").hide().html(data).fadeIn(200).delay(2000).fadeOut(200);            
         },
         failure: function(data){
-            $("#response").css("color", "red");
+            $("#response").attr("class","text-center alert alert-danger col-md-8");
             $("#response").hide().html(data).fadeIn(200).delay(2000).fadeOut(200);            
         }
     });
@@ -125,16 +124,16 @@ $("#update").click(()=>{                                    /* function that all
                 nomePHP: nome
             },
             success: function(){
-                $("#response").css("color", "green");
+                $("#response").attr("class","text-center alert alert-success col-md-8");
                 $("#response").hide().html("Success!").fadeIn(200).delay(2000).fadeOut(200);            
             },
             failure: function(data){
-                $("#response").css("color", "red");
+                $("#response").attr("class","text-center alert alert-danger col-md-8");
                 $("#response").hide().html(data).fadeIn(200).delay(2000).fadeOut(200);
             }
         });
     } else {
-        $("#response").css("color", "red");
+        $("#response").attr("class","text-center alert alert-danger col-md-8");
         $("#response").hide().html("Nothing to update!").fadeIn(200).delay(2000).fadeOut(200);
     }
     $(".form-control").val("");

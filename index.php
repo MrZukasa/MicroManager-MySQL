@@ -51,7 +51,7 @@
         </div>
       </div>
       <div class="row justify-content-md-center mt-3">
-        <div id="response" class="text-center alert" role="alert"></div>
+        <div id="response" class="text-center" role="alert"></div>
       </div>
       <div class="row justify-content-md-center mt-3">
         <div class="table-responsive">
