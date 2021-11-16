@@ -5,24 +5,24 @@
       $password = $_POST['passwordPHP'];
       //leggo i parametri in POST alla pagina PHP    
 
-      $myFile = "temp.json";
-      $response = array();
-      $posts = array();
-      $posts[]=array('nome' => $nome, 'password' => $password, 'email' => $email);
-      $response['posts'] = $posts;
-      $fh = fopen($myFile, 'w') or die("can't open file");
-      fwrite($fh, json_encode($posts));
-      fclose($fh);
+    //   $myFile = "temp.json";
+    //   $response = array();
+    //   $posts = array();
+    //   $posts[]=array('nome' => $nome, 'password' => $password, 'email' => $email);
+    //   $response['posts'] = $posts;
+    //   $fh = fopen($myFile, 'w') or die("can't open file");
+    //   fwrite($fh, json_encode($posts));
+    //   fclose($fh);
       //funzione per creare JSON file
 
     
-      $path=file_get_contents("temp.json");
-      $decoded=json_decode($path,true);
-      foreach($decoded as $item){
-          $nomeJSON=$item["nome"];
-          $emailJSON=$item["email"];
-          $passwordJSON=$item["password"];
-      }
+    //   $path=file_get_contents("temp.json");
+    //   $decoded=json_decode($path,true);
+    //   foreach($decoded as $item){
+    //       $nomeJSON=$item["nome"];
+    //       $emailJSON=$item["email"];
+    //       $passwordJSON=$item["password"];
+    //   }
       //lettura dati dal JSON File
     
       $connection = new mysqli('localhost', 'root','','dbprova');
@@ -30,7 +30,7 @@
           trigger_error('Connection failed: ' . $connection->connect_error, E_USER_ERROR);
       }  // apertura connessione al database
 
-      $data = "INSERT INTO users (firstName, email, password) VALUES ('$nomeJSON','$emailJSON','$passwordJSON')";
+      $data = "INSERT INTO users (firstName, email, password) VALUES ('$nome','$email','$password')";
       if ($connection->query($data)===false) {
           echo("Error: " . $connection->error);
       } //query per l'inserimento dei dati dal JSON al database      
