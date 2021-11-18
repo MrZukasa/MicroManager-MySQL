@@ -1,3 +1,6 @@
+## Hey Everyone :wave:
+my name is Francesco i'm a Junior web developer and this is the first (ish) app that i made using JavaScript (JQuery) and PHP.
+
 ## Record Micro-Management :sunglasses:
 A realy small project that allow the user to INSERT, UPDATE, VIEW and DELETE some record into a MySQL database.
 
