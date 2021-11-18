@@ -19,3 +19,4 @@ The tool that i used to make such a Database was embedded in Laragon, the name w
 
 ![HeidiSQL](https://iili.io/5k9F87.png)
 
+
