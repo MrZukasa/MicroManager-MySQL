@@ -14,4 +14,4 @@ This project was made only for didactic use, in order to make some practice with
 - [JQuery](https://jquery.com/)
 
 ## Needed Setup
-
+set up a MySQL db with a DataBase named 
