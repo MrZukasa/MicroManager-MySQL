@@ -4,7 +4,7 @@ my name is Francesco i'm a Junior web developer and this is the first (ish) app 
 ## Record Micro-Management :sunglasses:
 A realy small project that allow the user to INSERT, UPDATE, VIEW and DELETE some record into a MySQL database.
 
-## Motivation
+## Motivation	:heart_on_fire:
 This project was made only for didactic use, in order to make some practice with JQuery and PHP.
 
 ## Used Tool
