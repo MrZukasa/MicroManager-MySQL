@@ -39,7 +39,7 @@ $("#insert").click(()=>{
     };
 });
 
-// #########################################################################################################################
+//! #########################################################################################################################
 
 /* function that handles all the record from the DB and put them into a table */
 $("#view").click(()=>{
@@ -56,11 +56,11 @@ $("#view").click(()=>{
         data: {action:'action'},
         success: function(response){
 
-            //* first of all i need to remove the attribute Styles from the table in order to make it visible
+            // first of all i need to remove the attribute Styles from the table in order to make it visible
 
             $("#tabella").removeAttr("style");
 
-            //* declare and initialize a couple of variables
+            // declare and initialize a couple of variables
 
              var tabella ="";
              var riga="";
@@ -78,15 +78,15 @@ $("#view").click(()=>{
                      riga = '<td class="firstName">'+record.id+'</td><td class="firstName">'+record.firstName+'</td><td class="email">'+record.email+'</td><td class="password">'+record.password+'</td>';
                      tabella += "<tr><th scope='row'>"+(i+1)+"</th>"+riga+"</tr>";                    
                  });
-                //*  write down the whole table content
+                //  write down the whole table content
                  $("#tabella tbody").hide().html(tabella).fadeIn(200);
              });
-            //* set an alert with success message
+            // set an alert with success message
              $("#response").attr("class","text-center alert alert-success col-md-8");
              $("#response").hide().html("Success! "+response).fadeIn(200).delay(2000).fadeOut(200);
         },
         failure: function(data){
-            //* set an alert with failure message
+            // set an alert with failure message
             $("#response").attr("class","text-center alert alert-danger col-md-8");
             $("#response").hide().html("Failure! "+data).fadeIn(200).delay(2000).fadeOut(200);
         }
@@ -95,13 +95,13 @@ $("#view").click(()=>{
 
 //! ##########################################################################################################################
 
-//* function that allow the user to delete the selected record from the DB */
+// function that allow the user to delete the selected record from the DB */
 $("#delete").click(()=>{
     
-    //* get the ID value from JS
+    // get the ID value from JS
     var id = $("#Id").val();
     
-    //* make a POST AJAX call with ID as parameter in order to allows the user to delete the selected record
+    // make a POST AJAX call with ID as parameter in order to allows the user to delete the selected record
     $("#tabella").fadeOut(200);
     $.ajax({
         url:"remove.php",
@@ -109,39 +109,39 @@ $("#delete").click(()=>{
         async: true,
         data: {
             path:'all.json',
-            path2:"temp.json",
+            // path2:"temp.json",
             idPHP: id
         },
         success: function(data){
-            //*  set an alert with success message
+            //  set an alert with success message
             $("#response").attr("class","text-center alert alert-success col-md-8");
             $("#response").hide().html(data).fadeIn(200).delay(2000).fadeOut(200);            
         },
         failure: function(data){
-            //*  set an alert with failure message
+            //  set an alert with failure message
             $("#response").attr("class","text-center alert alert-danger col-md-8");
             $("#response").hide().html(data).fadeIn(200).delay(2000).fadeOut(200);            
         }
     });
-    //* empty the input box
+    // empty the input box
     $(".form-control").val("");
 });
 
 //! ###########################################################################################################################
 
-//* function that allow the user to select one singular record via clicking it on the table */
+// function that allow the user to select one singular record via clicking it on the table */
 $("#tabella").on("click","tr", function(){
 
-    //* identify the TD tag of the clicked record
+    // identify the TD tag of the clicked record
     var row = $(this).children("td");
     var arr=[];
 
-    //* split each record of the selected row in a fresh array
+    // split each record of the selected row in a fresh array
     row.each(function(i,o){
         arr[i]=$(o).text();
     });
 
-    //* print the value in the input box
+    // print the value in the input box
 
     $("#Id").val(arr[0]);
     $("#Nome").val(arr[1]);
@@ -149,19 +149,22 @@ $("#tabella").on("click","tr", function(){
     $("#Password").val(arr[3]);
 });
 
-//* function that allow the user to modify one record already present into the DB */
+// function that allow the user to modify one record already present into the DB */
 $("#update").click(()=>{
 
-    //* initialize some variable in order to get the value from the JS */
+    // initialize some variable in order to get the value from the JS */
 
     var nome = $("#Nome").val(); 
     var password = $("#Password").val();
     var email = $("#Email").val();
     var id = $("#Id").val();
 
-    //*check if the fields are ok
+    //check if the fields are ok
 
     if ($(".form-control").val()!=""){
+
+        // make an AJAX POST request in order to update the selected record in the DB
+
         $.ajax({
             url:"update.php",
             method:"POST",
@@ -172,21 +175,28 @@ $("#update").click(()=>{
                 passwordPHP: password,
                 nomePHP: nome
             },
-            success: function(){
+            success: function(data){
+                //  set an alert with success message
                 $("#response").attr("class","text-center alert alert-success col-md-8");
-                $("#response").hide().html("Success!").fadeIn(200).delay(2000).fadeOut(200);            
+                $("#response").hide().html("Success! "+data).fadeIn(200).delay(2000).fadeOut(200);            
             },
             failure: function(data){
+                //  set an alert with failure message
                 $("#response").attr("class","text-center alert alert-danger col-md-8");
-                $("#response").hide().html(data).fadeIn(200).delay(2000).fadeOut(200);
+                $("#response").hide().html("Failure! " +data).fadeIn(200).delay(2000).fadeOut(200);
             }
         });
     } else {
         $("#response").attr("class","text-center alert alert-danger col-md-8");
         $("#response").hide().html("Nothing to update!").fadeIn(200).delay(2000).fadeOut(200);
     }
+    // empty the input box
     $(".form-control").val("");
 });
+
+//! ################################################################################################################################
+
+// make password visible on a toggle button via changing the type of the input box
 
 $("#seepassword").click(()=>{
     if($("#Password").attr("type")=="password") {        

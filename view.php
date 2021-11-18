@@ -1,26 +1,38 @@
 <?php
 
-if (isset($_POST['action'])) {
-    $connection = new mysqli('localhost', 'root','','dbprova');
-    if ($connection->connect_error) {
-          trigger_error('Connection failed: ' . $connection->connect_error, E_USER_ERROR);
-    }  // apertura connessione al database
+    if (isset($_POST['action'])) {
+        $connection = new mysqli('localhost', 'root','','dbprova');
+        if ($connection->connect_error) {
+            trigger_error('Connection failed: ' . $connection->connect_error, E_USER_ERROR);
+        }
 
-$posts=[];  //inizzializzo la variabile sul quale scrivere
-$data = "SELECT id, firstName, email, password FROM users";
-$result = $connection->query($data);
-    while ($row = mysqli_fetch_assoc($result)) {
-      $posts[]=$row;
-    }
+    // check for POST parameter then open the database connection, also with error checking
 
-$fh = fopen('all.json','w') or die('error');    //creo un JSON temporaneo con tutto il dump del database      
-fwrite($fh, json_encode($posts, JSON_UNESCAPED_UNICODE));
-fclose($fh);
+        $posts=[];  
 
-mysqli_free_result($result);
-$connection -> close();
-} else {
-    echo "Error";
-}
+        $data = "SELECT id, firstName, email, password FROM users";
+        $result = $connection->query($data);
+
+    // execute the query and store the result
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            $posts[]=$row;            
+        }
+
+    // fetch the result in each row then push the row in a new array
+
+        $fh = fopen('all.json','w') or die('error');
+        fwrite($fh, json_encode($posts, JSON_UNESCAPED_UNICODE));
+        fclose($fh);
+
+    // make a temporary JSON file with the dump of the database
+
+        mysqli_free_result($result);
+        $connection -> close();
+        } else {
+            echo "Error";
+        }
+
+    // close the connection to database
 
 ?>
