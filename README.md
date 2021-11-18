@@ -14,4 +14,7 @@ This project was made only for didactic use, in order to make some practice with
 - [JQuery](https://jquery.com/)
 
 ## Needed Setup
-set up a MySQL db with a DataBase named 
+set up a MySQLDB with a DataBase named **dbprova** and a table named **users**.
+The tool that i used to make such a Database was embedded in Laragon, the name is HeidiSQL
+[HeidiSQL](https://freeimage.host/i/5k9F87)
+
