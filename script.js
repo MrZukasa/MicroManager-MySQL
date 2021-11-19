@@ -96,12 +96,15 @@ $("#view").click(()=>{
 //! ##########################################################################################################################
 
 // function that allow the user to delete the selected record from the DB */
+
 $("#delete").click(()=>{
     
     // get the ID value from JS
+
     var id = $("#Id").val();
     
     // make a POST AJAX call with ID as parameter in order to allows the user to delete the selected record
+    
     $("#tabella").fadeOut(200);
     $.ajax({
         url:"remove.php",
@@ -113,30 +116,37 @@ $("#delete").click(()=>{
             idPHP: id
         },
         success: function(data){
+
             //  set an alert with success message
             $("#response").attr("class","text-center alert alert-success col-md-8");
             $("#response").hide().html(data).fadeIn(200).delay(2000).fadeOut(200);            
         },
         failure: function(data){
+
             //  set an alert with failure message
             $("#response").attr("class","text-center alert alert-danger col-md-8");
             $("#response").hide().html(data).fadeIn(200).delay(2000).fadeOut(200);            
         }
     });
+
     // empty the input box
+
     $(".form-control").val("");
 });
 
 //! ###########################################################################################################################
 
 // function that allow the user to select one singular record via clicking it on the table */
+
 $("#tabella").on("click","tr", function(){
 
     // identify the TD tag of the clicked record
+
     var row = $(this).children("td");
     var arr=[];
 
     // split each record of the selected row in a fresh array
+
     row.each(function(i,o){
         arr[i]=$(o).text();
     });
@@ -150,6 +160,7 @@ $("#tabella").on("click","tr", function(){
 });
 
 // function that allow the user to modify one record already present into the DB */
+
 $("#update").click(()=>{
 
     // initialize some variable in order to get the value from the JS */

@@ -13,7 +13,6 @@
     //   $fh = fopen($myFile, 'w') or die("can't open file");
     //   fwrite($fh, json_encode($posts));
     //   fclose($fh);
-    
     //*make JSON file
 
     

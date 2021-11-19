@@ -16,7 +16,7 @@
     // execute the query and store the result
 
         while ($row = mysqli_fetch_assoc($result)) {
-            $posts[]=$row;            
+            $posts[]=$row;
         }
 
     // fetch the result in each row then push the row in a new array
