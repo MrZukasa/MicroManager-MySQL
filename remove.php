@@ -2,7 +2,7 @@
         $path = $_POST['path'];
         $id = $_POST['idPHP'];
 
-        // catch POST parameter from the JS script        
+        // catch POST parameter from the JS script
 
         if ((file_exists($path))) {
                 unlink($path);
