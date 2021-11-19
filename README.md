@@ -19,7 +19,9 @@ The tool that i used to make such a Database was embedded in Laragon, the name w
 
 ![HeidiSQL](https://iili.io/5k9F87.png)
 
-create the structure as in the picture
+also create the structure as in the picture
+
 ![fields](https://i.ibb.co/p0F2SNT/fields.png)
 
+Then save everything, run the web server and jump on localhost using your favourite browser, and there you go!
 
