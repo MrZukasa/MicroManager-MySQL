@@ -7,7 +7,7 @@ A realy small project that allow the user to INSERT, UPDATE, VIEW and DELETE som
 ## Motivation	:heart_on_fire:
 This project was made only for didactic use, in order to make some practice with JQuery and PHP.
 
-## Used Tool
+## Used Tools
 - [VScode](https://code.visualstudio.com/download)
 - [Laragon](https://laragon.org/)
 - [Bootstrap 5](https://getbootstrap.com/)
